@@ -1,0 +1,12 @@
+jq
+basename
+dolphin-emu #sh -c "$(curl -Ls https://github.com/project-slippi/Slippi-FM-installer/raw/master/setup)"
+cut
+grep
+strings
+xxd
+nmap
+
+
+dolpin-emu binary #$(which dolphin-emu) 
+    - turn Gecko Code for melee music off
