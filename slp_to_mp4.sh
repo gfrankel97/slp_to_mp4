@@ -72,12 +72,6 @@ function validate_and_set_settings {
         resolution_scale_factor="2"
     fi
 
-    _log_level=$(jq -r .log_level $(pwd)/settings/settings.json)
-    if [[ $_log_level = null ]]; then
-        echo -e "\t[${COLOR_YELLOW}Setting Missing${COLOR_NONE}]: Setting not found (check settings.json - log_level), defaulting to ${COLOR_BLUE}warn${COLOR_NONE}"
-        _log_level="warn"
-    fi
-
     if [[ ! -f "$(pwd)/settings/ini_templates/dolphin_settings.ini" ]]; then
         echo -e "\t[${COLOR_RED}File Missing${COLOR_NONE}]: ini_templates/dolphin_settings.ini"
         exit 1
@@ -215,7 +209,7 @@ function record_file {
         echo -e "\t[${COLOR_RED}DEBUG${COLOR_NONE}]: Frames File does NOT Exist"
     fi
 
-    echo -e "\t[${COLOR_GREEN}File Recording - Start${COLOR_NONE}]: ${base_file_name}.mp4"
+    echo -e "\t[${COLOR_GREEN}File Recording - Start${COLOR_NONE}]: $(echo ${base_file_name} | cut -d'.' -f1).mp4"
 
     set_frames_in_slippi_file $slp_file frame_count
     local frame_count=$current_slippi_file_length
@@ -317,8 +311,10 @@ function set_video_filter {
 function ini_replace {
     local path_to_instance=$1
     local path_to_instance_dolphin_dump="${path_to_instance}/User/Dump"
+    local melee_iso_folder=$(dirname $melee_iso | awk 'NR==1{print $1}')
     echo -e "\t[${COLOR_GREEN}Settings Replace - Start${COLOR_NONE}]:  ${path_to_instance}/User/Config/Dolphin.ini"
     sed -i".bak" "s@DumpPath = .*@DumpPath = $path_to_instance_dolphin_dump@" "${path_to_instance}/User/Config/Dolphin.ini"
+    sed -i".bak" "s@ISOPath0 = .*@ISOPath0 = $melee_iso_folder@" "${path_to_instance}/User/Config/Dolphin.ini"
     echo -e "\t[${COLOR_GREEN}Settings Replace - Finish${COLOR_NONE}]: ${path_to_instance}/User/Config/Dolphin.ini"
 }
 
