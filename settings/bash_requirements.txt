@@ -1,12 +1,12 @@
 jq
 basename
-dolphin-emu #sh -c "$(curl -Ls https://github.com/project-slippi/Slippi-FM-installer/raw/master/setup)"
 cut
+sed (gsed on macOS)
 grep
 strings
 xxd
-nmap
-
+ffmpeg
+parallel (gnu-parallel, NOT moreutils parallel)
 
 dolpin-emu binary #$(which dolphin-emu) 
     - turn Gecko Code for melee music off
