@@ -1,7 +1,7 @@
-# Slippi Dolphin Recorder
+# slp_to_mp4
 
 ## Purpose
-The Slippi Dolphin Recorder automates recording `.slp` files to `.mp4` files.
+The slp_to_mp4 automates recording `.slp` files to `.mp4` files.
 
 ## Features
 * Converts `.slp` files to `.mp4` files in 480p, 720p, and 1080p.
