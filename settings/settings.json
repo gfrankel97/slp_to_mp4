@@ -1,10 +1,10 @@
 {
-    "path_to_slp_files": "/home/gfrankel/Desktop/slippi_files",
-    "path_to_dolphin_base": "/home/gfrankel/Desktop/Slippi-FM-r18/playback",
-    "path_to_dolphin_temp": "/home/gfrankel/Desktop/dolphin_parallels",
-    "path_to_slippi_desktop_app": "/usr/local/bin/slippi-desktop-app",
-    "path_to_slippi_desktop_app_data_dir": "/home/gfrankel/.config/Slippi Desktop App",
-    "output_dir": "/home/gfrankel/Desktop/slippi_files/output",
-    "resolution_scale_factor": "1",
+    "path_to_slp_files": "",
+    "path_to_dolphin_base": "",
+    "path_to_dolphin_temp": "",
+    "path_to_slippi_desktop_app": "",
+    "path_to_slippi_desktop_app_data_dir": "",
+    "output_dir": "",
+    "resolution_scale_factor": "2",
     "parallelism": "2"
 }
