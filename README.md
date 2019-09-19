@@ -72,6 +72,7 @@ The script starts by creating duplicate dolphin instances. It creates a queue of
 
 ## To Do
 ### Must Haves:
+- Cross platform compatibility (need to test macOS and WSL)
 - Filter handwarmers/short games
 - Make recursive through folders and updates names accordingly
 - Command line prompt for settings if they don't exist, then set them
@@ -87,7 +88,7 @@ The script starts by creating duplicate dolphin instances. It creates a queue of
 ### Next Level:
 - Specify config on command line for Dolphin so we dont have to create and keep track of which dolphin directory it's going in
 - May not be possible due to slippi-desktop-app opening dolphin and Slippi r18 dolphin doesnt support command line config
-- Cut out Slippi Desktop App
+  - Cut out Slippi Desktop App
 
 
 ### Credits
