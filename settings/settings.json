@@ -5,6 +5,6 @@
     "path_to_slippi_desktop_app": "/usr/local/bin/slippi-desktop-app",
     "path_to_slippi_desktop_app_data_dir": "/home/gfrankel/.config/Slippi Desktop App",
     "output_dir": "/home/gfrankel/Desktop/slippi_files/output",
-    "resolution_scale_factor": "2",
+    "resolution_scale_factor": "1",
     "parallelism": "2"
 }

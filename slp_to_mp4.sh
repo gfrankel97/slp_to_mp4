@@ -78,13 +78,13 @@ function validate_and_set_settings {
         _log_level="warn"
     fi
 
-    if [[ ! -f "$(pwd)/settings/dolphin_settings.ini" ]]; then
-        echo -e "\t[${COLOR_RED}File Missing${COLOR_NONE}]: dolphin_settings.ini"
+    if [[ ! -f "$(pwd)/settings/ini_templates/dolphin_settings.ini" ]]; then
+        echo -e "\t[${COLOR_RED}File Missing${COLOR_NONE}]: ini_templates/dolphin_settings.ini"
         exit 1
     fi
 
-    if [[ ! -f "$(pwd)/settings/dolphin_gfx_settings.ini" ]]; then
-        echo -e "\t[${COLOR_RED}File Missing${COLOR_NONE}]: dolphin_gfx_settings.ini"
+    if [[ ! -f "$(pwd)/settings/ini_templates/dolphin_gfx_settings.ini" ]]; then
+        echo -e "\t[${COLOR_RED}File Missing${COLOR_NONE}]: ini_templates/dolphin_gfx_settings.ini"
         exit 1
     fi
 
@@ -133,12 +133,16 @@ function init {
     echo -e "\t[${COLOR_GREEN}Settings Copied${COLOR_NONE}]: Copy settings/slippi_desktop_app_settings.json to Slippi Desktop App directory"
 
     #Copy Dolphin playback script settings to Dolphin
-    cp "$(pwd)/settings/dolphin_settings.ini" "${path_to_dolphin_base}/User/Config/Dolphin.ini"
-    echo -e "\t[${COLOR_GREEN}Settings Copied${COLOR_NONE}]: Copy settings/dolphin_settings.ini to Dolphin"
+    cp "$(pwd)/settings/ini_templates/dolphin_settings.ini" "${path_to_dolphin_base}/User/Config/Dolphin.ini"
+    echo -e "\t[${COLOR_GREEN}Settings Copied${COLOR_NONE}]: Copy settings/ini_templates/dolphin_settings.ini to Dolphin"
+
+
 
     #Copy Dolphin playback GFX settings to Dolphin
-    cp "$(pwd)/settings/dolphin_gfx_settings.ini" "${path_to_dolphin_base}/User/Config/GFX.ini"
-    echo -e "\t[${COLOR_GREEN}Settings Copied${COLOR_NONE}]: Copy GFX settings/dolphin_gfx_settings.ini to Dolphin"
+    local efb_scale=$(($resolution_scale_factor * 2))
+    cp "$(pwd)/settings/ini_templates/dolphin_gfx_settings.ini" "${path_to_dolphin_base}/User/Config/GFX.ini"
+    sed -i".bak" "s@EFBScale = .*@EFBScale = $efb_scale@" "${path_to_dolphin_base}/User/Config/GFX.ini"
+    echo -e "\t[${COLOR_GREEN}Settings Copied${COLOR_NONE}]: Copy GFX settings/ini_templates/dolphin_gfx_settings.ini to Dolphin"
 
     rm -rf temp
     mkdir temp
@@ -147,7 +151,6 @@ function init {
     echo -e "\t[${COLOR_GREEN}Recording List Created${COLOR_NONE}]: Created temp/recording_jobs.txt (a list of slp files to record):"
     sed "s:^:\t\t:" temp/recording_jobs.txt
 
-    export -f create_log
     export -f validate_and_set_settings
     export -f clean_dump_dir
     export -f set_slippi_desktop_app_parallel_dolphin_bin
@@ -203,6 +206,7 @@ function record_file {
     global_start_counter=$SECONDS
     set_path_to_parallel_dolphin
     local slp_file=$1
+    local base_file_name=$(basename $slp_file)
     local dolphin_path=$current_parallel_dolphin_path
     local frames_file="${dolphin_path}/User/Logs/render_time.txt"
     local dump_folder="${dolphin_path}/User/Dump"
@@ -211,6 +215,7 @@ function record_file {
         echo -e "\t[${COLOR_RED}DEBUG${COLOR_NONE}]: Frames File does NOT Exist"
     fi
 
+    echo -e "\t[${COLOR_GREEN}File Recording - Start${COLOR_NONE}]: ${base_file_name}.mp4"
 
     set_frames_in_slippi_file $slp_file frame_count
     local frame_count=$current_slippi_file_length
@@ -278,7 +283,6 @@ function record_file {
 
     local current_avi_file="${dump_folder}/Frames/$(ls -t ${dump_folder}/Frames/ | head -1)"
     local current_audio_file_wav="${dump_folder}/Audio/dspdump.wav"
-    local base_file_name=$(basename $slp_file)
 
     base_file_name=$(echo $base_file_name | cut -d'.' -f1)
     convert_wav_and_avi_to_mp4 $current_avi_file $current_audio_file_wav $base_file_name
@@ -364,10 +368,13 @@ function process_slp_files_in_folder {
 }
 
 
+global_counter=$SECONDS
+
 init
 init_parallelism
 process_slp_files_in_folder
-echo -e "[${COLOR_GREEN}Script Complete${COLOR_NONE}]: Exiting Successfully"
+final_counter=$(($SECONDS-$global_counter))
+echo -e "[${COLOR_GREEN}Script Complete${COLOR_NONE}]: Exiting Successfully in ${final_counter}s"
 exit 0
 
 
