@@ -80,6 +80,7 @@ The script starts by creating duplicate dolphin instances. It creates a queue of
 ## To Do
 ### Must Haves:
 - Cross platform compatibility (need to test macOS and WSL)
+- Add UI
 - Filter handwarmers/short games
 - Make recursive through folders and updates names accordingly
 - Command line prompt for settings if they don't exist, then set them
