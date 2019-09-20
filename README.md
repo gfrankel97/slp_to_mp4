@@ -20,10 +20,13 @@ The script starts by creating duplicate dolphin instances. It creates a queue of
 ## Warning
 * Using this script will create as many dolphin duplicates specified in the script settings.
 * This will be a resource intensive process, more so depending on parallelism and dolphin resolution scaling.
+* This will be a storage intensive process, depending on the number of `.slp` files to be converted to `.mp4` files.
 * This will apply configuration to Slippi Desktop App
 * Only tested on Ubuntu 18.04 - Scripts for macOS and Windows will be coming.
+* It is NOT recommended to run this script as root user.
 
 ## Setup
+* Navigate to the folder you wish to install slp_to_mp4 and `git clone https://github.com/gfrankel97/slp_to_mp4.git`
 * Install all requirements specified in `settings/bash_requirements` with your preferred package manager (`apt`, `brew`, etc.)
 * Enter the settings in `settings/settings.json`
   ```json
@@ -42,7 +45,7 @@ The script starts by creating duplicate dolphin instances. It creates a queue of
       * `"resolution_scale_factor": "1"` is 480p
       * `"resolution_scale_factor": "2"` is 720p
       * `"resolution_scale_factor": "3"` is 1080p
-    * `"parallelism"` is the number of Dolphin instances AND FFmpeg instances running at the same time.
+    * `"parallelism"` is the number of Dolphin instances AND FFmpeg instances running at the same time. If there is a less Dolphin instances open than the settings for `"parallelism"`, then FFmpeg is converting the Dolphin dump to MP4. 
 * Enter settings in `settings/slippi_desktop_app_settings.json`
   ```json
   {
@@ -56,6 +59,10 @@ The script starts by creating duplicate dolphin instances. It creates a queue of
   ```
   * Note that `settings.playbackDolphinPath` and `path_to_dolphin_base` must match.
   * This is the same file that is in Slippi Desktop App `%AppData%` or `~/.config` and can be copied from there if you wish to keep other settings like Console Connections.
+  
+## Running the script
+* From the directory you installed slp_to_mp4, run `bash slp_to_mp4.sh` or mark it as executable `chmod +x slp_to_mp4.sh` and run it with `./slp_to_mp4.sh`
+* The script will validate your settings, check for files that should exist (like Melee ISO), and then begin the conversions.
 
 
 ## Extra Information
@@ -83,6 +90,7 @@ The script starts by creating duplicate dolphin instances. It creates a queue of
 - Widescreen record
 - Option to record all then convert all as opposed to record, convert, repeat.
 - More error handling/checking
+- Better Progress Bar
 - Upload to YouTube
 
 
