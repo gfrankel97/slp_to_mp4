@@ -1,3 +1,4 @@
 old
 temp
-settings
+settings/*
+node_modules
