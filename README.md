@@ -83,6 +83,7 @@ The script starts by creating duplicate dolphin instances. It creates a queue of
 - Widescreen record
 - Option to record all then convert all as opposed to record, convert, repeat.
 - More error handling/checking
+- Upload to YouTube
 
 
 ### Next Level:
