@@ -77,12 +77,15 @@ The script starts by creating duplicate dolphin instances. It creates a queue of
 - Make recursive through folders and updates names accordingly
 - Command line prompt for settings if they don't exist, then set them
 - Create installer script
+- Make sure output dir exists
+- Combine into sets
 
 
 ### Nice to Haves:
 - Widescreen record
 - Option to record all then convert all as opposed to record, convert, repeat.
 - More error handling/checking
+- Automatically space dolphin instances
 
 
 ### Next Level:

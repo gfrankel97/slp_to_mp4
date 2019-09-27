@@ -1,0 +1,61 @@
+{
+  "desktop_settings": [
+    { 
+      "name": "isoPath", 
+      "displayName": "Melee ISO File", 
+      "description": "The path to a NTSC Melee 1.02 ISO. Used for playing replay files"
+    },
+    { 
+      "name": "rootSlpPath", 
+      "displayName": "Replay Root Directory", 
+      "description": "The folder where your slp files are stored. Will usually be the Slippi folder located with Dolphin"
+    },
+    { 
+      "name": "playbackDolphinPath", 
+      "displayName": "Playback Dolphin Path", 
+      "description": ""
+    }
+  ],
+  "converter_settings": [
+    {
+      "name": "path_to_slp_files",
+      "displayName": "Path to Slippi Files",
+      "description": "The default folder to look for files to convert to MP4"
+    },
+    {
+      "name": "path_to_dolphin_base",
+      "displayName": "Path to Dolphin Base",
+      "description": ""
+    },
+    {
+      "name": "path_to_dolphin_temp",
+      "displayName": "Path to Dolphin Temp",
+      "description": ""
+    },
+    {
+      "name": "path_to_slippi_desktop_app",
+      "displayName": "Path to Slippi Desktop App",
+      "description": ""
+    },
+    {
+      "name": "path_to_slippi_desktop_app_data_dir",
+      "displayName": "Path to Slippi Desktop App Data Directory",
+      "description": ""
+    },
+    {
+      "name": "output_dir",
+      "displayName": "Clip Output Folder",
+      "description": ""
+    },
+    {
+      "name": "resolution_scale_factor",
+      "displayName": "Resolution Scale Factor",
+      "description": ""
+    },
+    {
+      "name": "parallelism",
+      "displayName": "Parrallelism",
+      "description": ""
+    }
+  ]
+}
